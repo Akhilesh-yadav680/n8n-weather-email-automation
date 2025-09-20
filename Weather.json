@@ -1,0 +1,102 @@
+{
+  "name": "Weather",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 14
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7751e5fe-16fe-4104-86e8-858b9554c22a",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "cityName": "Hyderabad,in"
+      },
+      "type": "n8n-nodes-base.openWeatherMap",
+      "typeVersion": 1,
+      "position": [
+        208,
+        16
+      ],
+      "id": "bf8bf71f-bbe4-4cd3-94ee-baf41e139116",
+      "name": "OpenWeatherMap",
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "BYRrNFowfi1qDCnN",
+          "name": "OpenWeatherMap account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "akhileshyadav52361@gmail.com",
+        "subject": "=Weather Update for Weather Update for {{$json[\"name\"]}}\n",
+        "message": "=Current weather: {{$json[\"weather\"][0][\"description\"]}}\nTemperature: {{$json[\"main\"][\"temp\"]}}°C\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        416,
+        0
+      ],
+      "id": "324708e2-6e84-460f-a8f5-a6774a02c9b2",
+      "name": "Send a message",
+      "webhookId": "aa34b014-e8b8-4b1b-a643-9b49c5797cd9",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "WoNR1OJiUFdajUwa",
+          "name": "Gmail account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "OpenWeatherMap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenWeatherMap": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "0843663b-2591-44ee-9950-617590846ed4",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2143bbab0046a29ff233d0225fd33fbe065863ee6490e9e4402496708a049faa"
+  },
+  "id": "wsJYzFJXduxNeJg2",
+  "tags": []
+}
