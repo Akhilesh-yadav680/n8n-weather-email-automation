@@ -1,5 +1,5 @@
-# Object file
-*.o
-
-# Ada Library Information
-*.ali
+# Ignore n8n environment files and credentials
+.env
+*.env
+.n8n/
+credentials.json
