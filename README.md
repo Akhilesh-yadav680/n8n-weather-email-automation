@@ -8,7 +8,9 @@ This repository contains an n8n workflow to automate sending daily weather updat
 - Uses OpenWeatherMap API for real-time weather data.
 - Sends customized email reports using Gmail.
 - Easily configurable city, time, and email address.
+### Sample Usage
 
+![n8n-weather-email-automation/](sample.png)
 ## Setup Instructions
 
 1. Import the workflow JSON file into your n8n instance.
